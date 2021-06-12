@@ -16,4 +16,17 @@ public class UserInfoPush {
     private String email;
     private String contactNumber;
     private List<String> tags;
+
+    @Override
+    public String toString() {
+        return "User { "
+                + "password = " + password + " ; "
+                + "firstname = " + firstName + " ; "
+                + "lastname = " + lastName + " ; "
+                + "email = " + email + " ; "
+                + "contactNumber = " + contactNumber + " ; "
+                + "tags = " + tags + " ; "
+                + " }.";
+
+    }
 }
