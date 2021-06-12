@@ -12,9 +12,7 @@ public class InfoGuess {
     RestTemplate restTemplate;
 
     @Autowired
-    GuessResEntity guessResEntity;
-
-//    UserInfoGuess userInfoGuess = new UserInfoGuess();
+    private GuessResEntity guessResEntity;
 
 //    public int getAge (String firstName) {
 //        Age age = restTemplate.getForObject("https://api.agify.io/?name={nameE}", Age.class, firstName);
@@ -32,9 +30,13 @@ public class InfoGuess {
 //    }
 
     public User getUserInfoGuess (String firstName) {
-
+//        RestTemplate restTemplate = new RestTemplate();
 
         User user = new User();
+//        System.out.println(restTemplate);
+//        System.out.println(restTemplate.getForObject("https://api.agify.io/?name={?}", GuessResEntity.class,firstName));
+//        GuessResEntity guessResEntity = new GuessResEntity();
+
 
 //        guess age
         guessResEntity = restTemplate.getForObject("https://api.agify.io/?name={?}", GuessResEntity.class,firstName);
@@ -47,7 +49,7 @@ public class InfoGuess {
 //        guess nationality
         guessResEntity = restTemplate.getForObject("https://api.nationalize.io?name={name}", GuessResEntity.class, firstName);
         if (!guessResEntity.getCountry().isEmpty()) {
-            user.setNationality((String)restTemplate.getForObject("https://api.nationalize.io?name={name}", GuessResEntity.class, firstName).getCountry().get(0).get("country_id"));
+            user.setNationality((String)guessResEntity.getCountry().get(0).get("country_id"));
         } else {
             user.setNationality(null);
         }
