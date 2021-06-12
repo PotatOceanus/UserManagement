@@ -18,12 +18,6 @@ public class AddUserServiceImpl implements AddUserService {
     @Autowired
     private InfoGuess infoGuess;
 
-//    @Autowired
-//    private UserInfoGuess userInfoGuess;
-
-//    @Autowired
-//    private UserInfoGen userInfoGen;
-
     @Override
     public User getUserInfoFull(UserInfoPush userInfoPush) {
 
