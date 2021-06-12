@@ -29,4 +29,23 @@ public class User {
     @EqualsAndHashCode.Exclude private String created;
     @EqualsAndHashCode.Exclude private String updated;
 
+    @Override
+    public String toString() {
+        return "User { "
+                + "username = " + username + " ; "
+                + "password = " + password + " ; "
+                + "firstname = " + firstName + " ; "
+                + "lastname = " + lastName + " ; "
+                + "email = " + email + " ; "
+                + "contactNumber = " + contactNumber + " ; "
+                + "tags = " + tags + " ; "
+                + "age = " + age + " ; "
+                + "gender = " + gender + " ; "
+                + "nationality = " + nationality + " ; "
+                + "status = " + status + " ; "
+                + "created = " + created + " ; "
+                + "updated = " + updated + " ; "
+                + " }.";
+    }
+
 }

@@ -51,9 +51,9 @@ public class InfoGenTests {
             for (int j = 0; j <= (int) (Math.random() * TAGS.size()); j++) {
                 tags.add(TAGS.get((int) (Math.random() * TAGS.size())));
             }
+            userInfoPush.setTags(tags);
 
             try {
-                userInfoPush.setTags(tags);
                 User user = infoGen.getUserInfoGen(userInfoPush);
                 assertEquals(userInfoPush.getEmail(), user.getUsername());
                 assertEquals(tags.stream().collect(Collectors.joining(":")), user.getTags());

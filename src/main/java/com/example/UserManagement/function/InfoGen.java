@@ -24,6 +24,7 @@ public class InfoGen {
 
     public User getUserInfoGen (UserInfoPush userInfoPush) {
 
+//        System.out.println(userInfoPush);
         User user = new User();
 
 //        set username
