@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddUserServiceImpl implements AddUserService {
 
-
     @Autowired
     private InfoGen infoGen;
 
