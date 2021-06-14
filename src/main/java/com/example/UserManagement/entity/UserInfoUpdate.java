@@ -30,11 +30,9 @@ public class UserInfoUpdate {
     @EqualsAndHashCode.Exclude private String updated;
 
     public String getTags() {
-        if (tags != null) {
-            return tags.stream().collect(Collectors.joining(":"));
-        } else {
-            return null;
+        return (tags != null) ? tags.stream().collect(Collectors.joining(":")) : null;
+//            return tags.stream().collect(Collectors.joining(":"));
+//        } else {
+//            return null;
         }
     }
-
-}

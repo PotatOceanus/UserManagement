@@ -12,27 +12,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateUserServiceImpl implements UpdateUserService {
 
-
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
     InfoGuess infoGuess;
 
-//    @Autowired
-//    UserInfoGuess userInfoGuess;
-
-//    @Autowired
-//    InfoGen infoGen;
-
     @Override
     public User makeUserInfoFull(UserInfoUpdate userInfoUpdate)
             throws UserNotFoundException {
+
+        System.out.println(userInfoUpdate.getUsername());
+        System.out.println(userRepository.findAll());
+        System.out.println(userRepository.findById(userInfoUpdate.getUsername()));
         User user_to_update =
                 userRepository.findById(userInfoUpdate.getUsername())
                         .orElseThrow(() -> new UserNotFoundException("User not found by this username : " + "{" + userInfoUpdate.getUsername() + "}"));
         User user_guess = new User();
         User user = new User();
+        System.out.println(user_to_update + "  " + user_guess + "  " + user);
 
 //        first name change, guess information update
         Boolean firstName_new = (user_to_update.getFirstName() != userInfoUpdate.getFirstName() && userInfoUpdate.getFirstName() != null);

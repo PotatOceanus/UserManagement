@@ -4,6 +4,7 @@ import com.example.UserManagement.entity.User;
 import com.example.UserManagement.entity.UserInfoPush;
 import com.example.UserManagement.function.InfoGen;
 import com.example.UserManagement.function.InfoGuess;
+import com.example.UserManagement.repository.UserRepository;
 import com.example.UserManagement.service.AddUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

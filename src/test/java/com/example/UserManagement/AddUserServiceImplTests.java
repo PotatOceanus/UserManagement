@@ -5,6 +5,7 @@ import com.example.UserManagement.entity.UserInfoPush;
 import com.example.UserManagement.function.GuessResEntity;
 import com.example.UserManagement.function.InfoGen;
 import com.example.UserManagement.function.InfoGuess;
+import com.example.UserManagement.repository.UserRepository;
 import com.example.UserManagement.service.impl.AddUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
