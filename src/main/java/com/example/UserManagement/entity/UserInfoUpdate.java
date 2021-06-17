@@ -31,8 +31,5 @@ public class UserInfoUpdate {
 
     public String getTags() {
         return (tags != null) ? tags.stream().collect(Collectors.joining(":")) : null;
-//            return tags.stream().collect(Collectors.joining(":"));
-//        } else {
-//            return null;
         }
     }

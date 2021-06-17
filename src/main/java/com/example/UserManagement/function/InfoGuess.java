@@ -14,9 +14,7 @@ public class InfoGuess {
     @Autowired
     private GuessResEntity guessResEntity;
 
-
     public User getUserInfoGuess (String firstName) {
-//        RestTemplate restTemplate = new RestTemplate();
 
         User user = new User();
 

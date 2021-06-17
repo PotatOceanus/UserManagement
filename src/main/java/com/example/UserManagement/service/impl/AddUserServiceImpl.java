@@ -21,7 +21,6 @@ public class AddUserServiceImpl implements AddUserService {
     @Override
     public User getUserInfoFull(UserInfoPush userInfoPush) {
 
-//        System.out.println(infoGen);
         User user_gen = infoGen.getUserInfoGen(userInfoPush);
         User user_guess = infoGuess.getUserInfoGuess(userInfoPush.getFirstName());
 
