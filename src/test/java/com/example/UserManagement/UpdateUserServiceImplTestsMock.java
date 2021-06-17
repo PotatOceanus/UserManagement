@@ -2,7 +2,6 @@ package com.example.UserManagement;
 
 import com.example.UserManagement.entity.User;
 import com.example.UserManagement.entity.UserInfoUpdate;
-import com.example.UserManagement.exceptions.UserNotFoundException;
 import com.example.UserManagement.function.InfoGuess;
 import com.example.UserManagement.repository.UserRepository;
 import com.example.UserManagement.service.impl.UpdateUserServiceImpl;
@@ -14,23 +13,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 
 
-public class UpdateUserServiceImplTestsMock {
 
-    List<String> USERNAME = asList("11111@1111.com","12634@905054.com","127@potato.com","aaa@bcd.com","popo@potato.com");
-    List<String> PASSWORD = asList("password1","123456","Calpas","$%%^&*",null,"   ","");
-    List<String> NAME = asList("Jane","Michael","123456","#$%$^&*","ocean","tifa","Mare","Kid",null,"  ","");
-    List<String> EMAIL = asList("EMAIL1@TEST.COM","email2@test.com","email3","#$%$^&*@...com","computer@dot.com",null,"    ","");
-    List<String> CONTACTNUMBER = asList("123456","37684555","42310056778","#$%$^&*596850","2495143269","     ",null,"");
-    List<Integer> AGE = asList(1,10,30,60,1000);
-    List<String> GENDER = asList("Male","Female",null);
-    List<String> NATIONALITY = asList("US","CN","IR","AU","JP",null);
-    List<String> TAGS = asList("Shanghai","Guangzhou","SHENZHEN","pk","weinne","     ",null,"");
-    List<String> STATUS = asList("active");
+public class UpdateUserServiceImplTestsMock {
 
     @Mock
     UserRepository userRepository;
@@ -50,7 +38,7 @@ public class UpdateUserServiceImplTestsMock {
     }
 
     @Test
-    public void makeUserInfoRight () throws UserNotFoundException {
+    public void makeUserInfoRight () throws Exception {
         userInfoUpdate.setUsername("JackBauer@CTU.com");
         userInfoUpdate.setPassword("234567");
         userInfoUpdate.setFirstName("Bauer");
@@ -58,11 +46,9 @@ public class UpdateUserServiceImplTestsMock {
         userInfoUpdate.setContactNumber("765432");
         List tag = Arrays.asList("CTU","US","Head","Retired");
         userInfoUpdate.setTags(tag);
+        User user = updateUserServiceImpl.makeUserInfoFull(userInfoUpdate);
 
         User user_to_update = new User();
-        User user_guess = new User();
-        User user = new User();
-
         user_to_update.setUsername("JackBauer@CTU.com");
         user_to_update.setPassword("123456");
         user_to_update.setFirstName("Jack");
@@ -76,12 +62,12 @@ public class UpdateUserServiceImplTestsMock {
         user_to_update.setStatus("active");
         doReturn(Optional.of(user_to_update)).when(userRepository).findById(userInfoUpdate.getUsername());
 
+
+        User user_guess = new User();
         user_guess.setAge(25);
         user_guess.setGender("female");
         user_guess.setNationality("TW");
         doReturn(user_guess).when(infoGuess).getUserInfoGuess(userInfoUpdate.getFirstName());
-
-        user = updateUserServiceImpl.makeUserInfoFull(userInfoUpdate);
 
         assertEquals("JackBauer@CTU.com",user.getUsername());
         assertEquals("234567",user.getPassword());
@@ -96,4 +82,5 @@ public class UpdateUserServiceImplTestsMock {
         assertEquals("active",user.getStatus());
 
     }
+
 }

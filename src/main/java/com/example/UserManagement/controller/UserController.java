@@ -37,7 +37,6 @@ public class UserController {
         userRepository.save(user);
     }
 
-
     @GetMapping("/find/{userName}")
     @ResponseBody
     public ResponseEntity<User> findOneUser(@PathVariable(value = "userName") String username)

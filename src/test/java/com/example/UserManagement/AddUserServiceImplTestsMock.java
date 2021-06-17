@@ -29,12 +29,6 @@ import static org.mockito.Mockito.doReturn;
 
 public class AddUserServiceImplTestsMock {
 
-    List<String> PASSWORD = asList("password1","123456","Calpas","$%%^&*",null,"   ","");
-    List<String> NAME = asList("Jane","Michael","123456","#$%$^&*","ocean","tifa","Mare","Kid",null,"  ","");
-    List<String> EMAIL = asList("EMAIL1@TEST.COM","email2@test.com","email3","#$%$^&*@...com",null,"    ","");
-    List<String> CONTACTNUMBER = asList("EMAIL1@TEST.COM","email2@test.com","email3","#$%$^&*@...com","     ",null,"");
-    List<String> TAGS = asList("Shanghai","Guangzhou","SHENZHEN","pk","     ",null,"");
-
     @Mock
     InfoGen infogen;
 

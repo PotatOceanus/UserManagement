@@ -17,7 +17,6 @@ import static java.util.Arrays.asList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 public class InfoGenTestsMock {
 
     List<String> PASSWORD = asList("password1","123456","Calpas","$%%^&*",null,"   ","");
@@ -34,7 +33,7 @@ public class InfoGenTestsMock {
 
     @BeforeEach
     public void setupMock() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         userInfoPush = new UserInfoPush();
     }
 

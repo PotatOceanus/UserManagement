@@ -30,7 +30,6 @@ public class InfoGuessTests {
     @Spy
     private GuessResEntity guessResEntity;
 
-
     public InfoGuessTests() {
     }
 
