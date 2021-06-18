@@ -3,6 +3,7 @@ package com.example.UserManagement.Wrongtests;
 import com.example.UserManagement.entity.User;
 import com.example.UserManagement.function.GuessResEntity;
 import com.example.UserManagement.function.InfoGuess;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Ignore
 @SpringBootTest
 public class InfoGuessTests {
 

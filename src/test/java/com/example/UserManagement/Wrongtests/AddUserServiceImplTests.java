@@ -7,6 +7,7 @@ import com.example.UserManagement.function.InfoGen;
 import com.example.UserManagement.function.InfoGuess;
 import com.example.UserManagement.repository.UserRepository;
 import com.example.UserManagement.service.impl.AddUserServiceImpl;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Ignore
 @SpringBootTest
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration({"/spring/app*.xml","/spring/service/app*.xml"})

@@ -3,6 +3,7 @@ package com.example.UserManagement.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Service
 public class UserInfoUpdate {
 
     @Id

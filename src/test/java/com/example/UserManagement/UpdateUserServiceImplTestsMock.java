@@ -46,7 +46,6 @@ public class UpdateUserServiceImplTestsMock {
         userInfoUpdate.setContactNumber("765432");
         List tag = Arrays.asList("CTU","US","Head","Retired");
         userInfoUpdate.setTags(tag);
-        User user = updateUserServiceImpl.makeUserInfoFull(userInfoUpdate);
 
         User user_to_update = new User();
         user_to_update.setUsername("JackBauer@CTU.com");
@@ -62,12 +61,13 @@ public class UpdateUserServiceImplTestsMock {
         user_to_update.setStatus("active");
         doReturn(Optional.of(user_to_update)).when(userRepository).findById(userInfoUpdate.getUsername());
 
-
         User user_guess = new User();
         user_guess.setAge(25);
         user_guess.setGender("female");
         user_guess.setNationality("TW");
         doReturn(user_guess).when(infoGuess).getUserInfoGuess(userInfoUpdate.getFirstName());
+
+        User user = updateUserServiceImpl.makeUserInfoFull(userInfoUpdate);
 
         assertEquals("JackBauer@CTU.com",user.getUsername());
         assertEquals("234567",user.getPassword());
