@@ -31,21 +31,21 @@ public class User {
 
     @Override
     public String toString() {
-        return "User { "
-                + "username = " + username + " ; "
-                + "password = " + password + " ; "
-                + "firstname = " + firstName + " ; "
-                + "lastname = " + lastName + " ; "
-                + "email = " + email + " ; "
-                + "contactNumber = " + contactNumber + " ; "
-                + "tags = " + tags + " ; "
-                + "age = " + age + " ; "
-                + "gender = " + gender + " ; "
-                + "nationality = " + nationality + " ; "
-                + "status = " + status + " ; "
-                + "created = " + created + " ; "
-                + "updated = " + updated + " ; "
-                + " }.";
+        return "{"
+                + "\"username\"" + ":\"" + username + "\","
+                + "\"password\"" + ":\"" +password + "\","
+                + "\"firstName\"" + ":\"" +firstName + "\","
+                + "\"lastName\"" + ":\"" +lastName + "\","
+                + "\"email\"" + ":\"" +email + "\","
+                + "\"contactNumber\"" + ":\"" + contactNumber + "\","
+                + "\"age\"" + ":" + age + ","
+                + "\"gender\"" + ":\"" + gender + "\","
+                + "\"nationality\"" + ":\"" + nationality + "\","
+                + "\"tags\"" + ":\"" + tags + "\","
+                + "\"status\"" + ":\"" + status + "\","
+                + "\"created\"" + ":\"" + created + "\","
+                + "\"updated\"" + ":\"" + updated + "\""
+                + "}";
     }
 
 }

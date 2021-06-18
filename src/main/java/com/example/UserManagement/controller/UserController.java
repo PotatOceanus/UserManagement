@@ -39,13 +39,13 @@ public class UserController {
 
     @GetMapping("/find/{userName}")
     @ResponseBody
-    public ResponseEntity<User> findOneUser(@PathVariable(value = "userName") String username)
+    public User findOneUser(@PathVariable(value = "userName") String username)
             throws UserNotFoundException {
             User user =
                     userRepository
                             .findById(username)
                             .orElseThrow(() -> new UserNotFoundException("User not found by this username : " + "{" + username + "}"));
-                return ResponseEntity.ok().body(user);
+                return user;
     }
 
     @GetMapping("/find/all")
