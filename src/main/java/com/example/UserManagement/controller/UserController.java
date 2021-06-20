@@ -51,7 +51,6 @@ public class UserController {
     @GetMapping("/find/all")
     @ResponseBody
     public List<User> findUser() {
-
         return userRepository.findAll();
     }
 

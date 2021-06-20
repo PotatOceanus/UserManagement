@@ -38,7 +38,6 @@ public class AddUserServiceImplTestsMock {
     @Mock
     private UserInfoPush userInfoPush;
 
-
     @InjectMocks
     private AddUserServiceImpl addUserServiceImpl;
 

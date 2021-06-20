@@ -19,14 +19,19 @@ public class UserInfoPush {
 
     @Override
     public String toString() {
-        return "User { "
-                + "password = " + password + " ; "
-                + "firstname = " + firstName + " ; "
-                + "lastname = " + lastName + " ; "
-                + "email = " + email + " ; "
-                + "contactNumber = " + contactNumber + " ; "
-                + "tags = " + tags + " ; "
-                + " }.";
+        String tags_print = "";
+        for (int i = 0;i < tags.size() - 1; i++) {
+            tags_print = tags_print + "\"" + tags.get(i) + "\",";
+        }
+        tags_print = tags_print + "\"" + tags.get(tags.size() - 1) + "\"";
 
+        return "{"
+                + "\"password\"" + ":\"" +password + "\","
+                + "\"firstName\"" + ":\"" +firstName + "\","
+                + "\"lastName\"" + ":\"" +lastName + "\","
+                + "\"email\"" + ":\"" +email + "\","
+                + "\"contactNumber\"" + ":\"" + contactNumber + "\","
+                + "\"tags\"" + ":[" + tags_print + "]"
+                + "}";
     }
 }
