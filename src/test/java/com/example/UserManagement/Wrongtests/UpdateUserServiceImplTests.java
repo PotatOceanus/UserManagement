@@ -45,7 +45,6 @@ import java.util.Optional;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Ignore
 @SpringBootTest
 public class UpdateUserServiceImplTests {
 
@@ -84,7 +83,7 @@ public class UpdateUserServiceImplTests {
         userInfoUpdate = new UserInfoUpdate();
     }
 
-//    @Ignore("Not ready")
+    @Ignore
     @Test
     public void makeUserInfoRight (){
         System.out.println(userRepository1);

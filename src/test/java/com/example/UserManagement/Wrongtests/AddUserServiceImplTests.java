@@ -26,10 +26,8 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Ignore
+
 @SpringBootTest
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration({"/spring/app*.xml","/spring/service/app*.xml"})
 public class AddUserServiceImplTests {
 
     List<String> PASSWORD = asList("password1","123456","Calpas","$%%^&*",null,"   ","");
@@ -64,6 +62,7 @@ public class AddUserServiceImplTests {
         userInfoPush = new UserInfoPush();
     }
 
+    @Ignore
     @Test
     public void gatherUserInfoRight () {
         int index;

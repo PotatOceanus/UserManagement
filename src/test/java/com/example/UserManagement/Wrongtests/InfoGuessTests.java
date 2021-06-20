@@ -17,7 +17,6 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Ignore
 @SpringBootTest
 public class InfoGuessTests {
 
@@ -40,6 +39,7 @@ public class InfoGuessTests {
         MockitoAnnotations.openMocks(this);
     }
 
+    @Ignore
     @Test
     public void guessInfoRight() {
         String firstname;
