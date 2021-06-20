@@ -9,39 +9,24 @@ import com.example.UserManagement.exceptions.UserNotFoundException;
 import com.example.UserManagement.repository.UserRepository;
 import com.example.UserManagement.service.impl.AddUserServiceImpl;
 import com.example.UserManagement.service.impl.UpdateUserServiceImpl;
-import net.minidev.json.JSONObject;
-import org.junit.Assert;
-import org.junit.Ignore;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
+
 import org.mockito.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.util.NestedServletException;
 
-import java.nio.file.Path;
-import java.sql.Array;
-import java.util.*;
-import java.util.stream.Collectors;
 
-import static java.nio.file.Paths.get;
-import static org.assertj.core.util.Arrays.asList;
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -106,6 +91,7 @@ public class UserControllerTestsMock {
             "2021-06-17T22:10:36.858Z",
             "2021-06-17T22:10:36.858Z");
 
+
     // add user
     @Test
     public void addOneUserNormal () throws Exception {
@@ -129,23 +115,21 @@ public class UserControllerTestsMock {
         // Crate user verify
         assertEquals(201, result.getResponse().getStatus());
         // Save user verify
-        verify(userRepository, times(1)).save(any());
-        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
-        verify(userRepository).save(captor.capture());
-        assertTrue(captor.getValue().getUsername().equals(user1.getUsername()));
+        verify(userRepository, times(1)).save(user1);
     }
 
 
     // find one user
     @Test
     public void findOneUserNormal () throws Exception {
-
+        //given
         Mockito.when(userRepository.findById("JackBauer@CTU.com")).thenReturn(Optional.of(user1));
-
+        //when
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/user-management/find/{userName}","JackBauer@CTU.com"))
                                         .andExpect(MockMvcResultMatchers.status().isOk())
                                         .andReturn();
+        //then
         assertEquals(result.getResponse().getContentAsString(), userController.findOneUser("JackBauer@CTU.com").toString());
     }
 
@@ -153,10 +137,12 @@ public class UserControllerTestsMock {
     public void findOneUserNotFound () throws Exception {
 
         Mockito.when(userRepository.findById("JackBau@CTU.com")).thenReturn(Optional.empty());
+
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/user-management/find/{userName}","JackBau@CTU.com"))
                 .andDo(print())
                 .andReturn();
+
         assertEquals(404, result.getResponse().getStatus());
         assertEquals("User not found by this username : " + "{" + "JackBau@CTU.com" + "}", result.getResolvedException().getMessage());
     }
@@ -175,7 +161,9 @@ public class UserControllerTestsMock {
     //find all user
     @Test
     public void findAllUserNormal () throws Exception {
+
         Mockito.when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user2));
+
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/user-management/find/all"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -191,10 +179,12 @@ public class UserControllerTestsMock {
     public void deleteOneUserNormal () throws Exception {
 
         Mockito.when(userRepository.findById("JackBauer@CTU.com")).thenReturn(java.util.Optional.of(user1));
+
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/user-management/delete/{userName}","JackBauer@CTU.com"))
                 .andDo(print())
                 .andReturn();
+
         assertEquals(200,result.getResponse().getStatus());
         verify(userRepository, times(1)).deleteById("JackBauer@CTU.com");
     }
@@ -203,10 +193,12 @@ public class UserControllerTestsMock {
     public void deleteOneUserNotFound () throws Exception {
 
         Mockito.when(userRepository.findById("JackBau@CTU.com")).thenReturn(Optional.empty());
+
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/user-management/delete/{userName}","JackBau@CTU.com"))
                 .andDo(print())
                 .andReturn();
+
         assertEquals(404, result.getResponse().getStatus());
         assertEquals("User(to delete) not found by this username : " + "{" + "JackBau@CTU.com" + "}", result.getResolvedException().getMessage());
     }
@@ -236,12 +228,14 @@ public class UserControllerTestsMock {
 
         Mockito.when(userRepository.findById("JackBauer@CTU.com")).thenReturn(java.util.Optional.of(user1));
         doReturn(user3).when(updateUserServiceImpl).makeUserInfoFull(any(UserInfoUpdate.class));;
+
         MvcResult result = mockMvc.perform(post("/api/user-management/update")
                 .content(JSON.toJSONString(userInfoUpdate))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andReturn();
+
         verify((userRepository),times(1)).findById("JackBauer@CTU.com");
         verify((userRepository),times(1)).save(user3);
     }
@@ -254,12 +248,14 @@ public class UserControllerTestsMock {
         userInfoUpdate.setEmail("KateBauer@CTU.com");
 
         Mockito.when(userRepository.findById("Jack@CTU.com")).thenReturn(Optional.empty());
+
         MvcResult result = mockMvc.perform(post("/api/user-management/update")
                 .content(JSON.toJSONString(userInfoUpdate))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andReturn();
+
         assertEquals(404, result.getResponse().getStatus());
         assertEquals("User(to update) not found by this username : " + "{" + "Jack@CTU.com" + "}", result.getResolvedException().getMessage());
     }
