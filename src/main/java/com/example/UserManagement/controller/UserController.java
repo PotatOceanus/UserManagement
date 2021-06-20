@@ -61,12 +61,11 @@ public class UserController {
         User user =
                 userRepository
                         .findById(username)
-                        .orElseThrow(() -> new UserNotFoundException("User not found by this username : " + "{" + username + "}"));
+                        .orElseThrow(() -> new UserNotFoundException("User(to delete) not found by this username : " + "{" + username + "}"));
         userRepository.deleteById(username);
         Map<String, Boolean> response = new HashMap<>();
         response.put("{" + username + "}" + " deleted.", Boolean.TRUE);
         return response;
-
     }
 
     @PostMapping("/update")
@@ -76,7 +75,7 @@ public class UserController {
         User user_to_update =
                 userRepository
                         .findById(userInfoUpdate.getUsername())
-                        .orElseThrow(() -> new UserNotFoundException("User not found by this username : " + "{" + userInfoUpdate.getUsername() + "}"));
+                        .orElseThrow(() -> new UserNotFoundException("User(to update) not found by this username : " + "{" + userInfoUpdate.getUsername() + "}"));
         User user = updateUserServiceImpl.makeUserInfoFull(userInfoUpdate);
         Map<String, Boolean> response = new HashMap<>();
         response.put("{" + user_to_update.getUsername() + "}" + " updated.", Boolean.TRUE);
